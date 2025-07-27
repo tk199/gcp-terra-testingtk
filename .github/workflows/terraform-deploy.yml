@@ -1,0 +1,25 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - dev2
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_KEY_JSON }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -var="google_credentials=$GOOGLE_CREDENTIALS" -auto-approve
