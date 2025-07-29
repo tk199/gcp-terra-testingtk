@@ -26,3 +26,6 @@ jobs:
 
       # - name: Terraform Apply
       #   run: terraform apply -var="google_credentials=$GOOGLE_CREDENTIALS" -auto-approve
+
+      - name: Terraform Destroy
+        run: terraform destroy
