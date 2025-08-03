@@ -5,3 +5,7 @@ module "compute" {
 module "network" {
     source = "./modules/network"
 }
+
+module "buckets" {
+    source = "./modules/buckets"
+}
