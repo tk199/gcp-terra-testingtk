@@ -29,7 +29,7 @@ variable "environment" {
   description = "GCP resource environment"
 }
 
-variable "use_existing_ips" {
+variable "use_existing_ip" {
   description = "Set true to use existing IP address, false to allocate to a new one"
   type = bool
   default = false
