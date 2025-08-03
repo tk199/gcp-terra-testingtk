@@ -19,7 +19,7 @@ variable "gcp_project_number" {
   description = "GCP project number"
 }
 
-variable "gpc_resource_location" {
+variable "gcp_resource_location" {
   type = string
   description = "GCP resource location"
 }
