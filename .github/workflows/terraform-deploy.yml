@@ -1,31 +1,55 @@
 # name: Terraform Deploy
 
-# on:
-#   push:
-#     branches:
-#       - dev2
+on:
+  push:
+    branches:
+      - dev2
+      - stage
+  pull_request:
+    branches:
+      - stage
 
-# jobs:
-#   terraform:
-#     runs-on: ubuntu-latest
-#     env:
-#       GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_KEY_JSON }}
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
+jobs:
+  terraform-dev:
+    if: github.ref_name == 'dev2'
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_KEY_JSON }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-#       - name: Setup Terraform
-#         uses: hashicorp/setup-terraform@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
-#       - name: Terraform Init
-#         run: terraform init
+      - name: Terraform Init
+        run: terraform init -backend-config="backend-dev.conf"
 
-#       - name: Terraform Plan
-#         run: terraform plan -var="google_credentials=$GOOGLE_CREDENTIALS"
+      - name: Terraform Plan
+        run: terraform plan -var-file="terraform-dev.tfvars"
 
-#       # - name: Terraform Apply
-#       #   run: terraform apply -var="google_credentials=$GOOGLE_CREDENTIALS" -auto-approve
+      - name: Terraform Apply
+        run: terraform apply -var-file="terraform-dev.tfvars" -auto-approve
 
-#       - name: Terraform Destroy
-#         run: terraform destroy -auto-approve -input=false -var="google_credentials=$GOOGLE_CREDENTIALS"
+  terraform-stage:
+    if: github.ref_name == 'stage'
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_KEY_JSON_STAGE }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init -backend-config="backend-stage.conf"
+
+      - name: Terraform Plan
+        run: terraform plan -var-file="terraform-stage.tfvars"
+
+      - name: Terraform Apply
+        if: github.event_name == 'push'
+        run: terraform apply -var-file="terraform-stage.tfvars" -auto-approve
