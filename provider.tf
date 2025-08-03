@@ -1,4 +1,5 @@
 provider "google" {
   credentials = var.google_credentials
-  project     = "tk-terra-dev"
+  project     = var.project_id
+  region      = var.region
 }
