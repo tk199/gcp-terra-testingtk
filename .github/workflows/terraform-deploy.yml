@@ -27,7 +27,7 @@ jobs:
         run: terraform init -backend-config="backend-dev.conf"
 
       - name: Terraform Plan
-        run: terraform plan -var-file="/config/dev-us-central1/terraform.tfvars"
+        run: terraform plan -var-file="/gcp-terra-testingtk/config/dev-us-central1/terraform.tfvars"
 
       - name: Terraform Apply
         run: terraform apply -var-file="terraform-dev.tfvars" -auto-approve
@@ -48,7 +48,7 @@ jobs:
         run: terraform init -backend-config="backend-stage.conf"
 
       - name: Terraform Plan
-        run: terraform plan -var-file="/config/stage-us-central1/terraform-stage.tfvars"
+        run: terraform plan -var-file="/gcp-terra-testingtk/config/stage-us-central1/terraform-stage.tfvars"
 
       - name: Terraform Apply
         if: github.event_name == 'push'
