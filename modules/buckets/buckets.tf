@@ -4,4 +4,3 @@ resource "google_storage_bucket" "state_bucket" {
   gcp_resource_location = var.gcp_resource_location
   gcp_project_name = var.gcp_project_name
   }
-}
