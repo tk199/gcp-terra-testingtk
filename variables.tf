@@ -1,7 +1,7 @@
 # variables.tf
 variable "google_credentials" {
-  description = "GCP credentials"
   type        = string
+  description = "GCP credentials"
 }
 
 variable "gcp_product_id" {
