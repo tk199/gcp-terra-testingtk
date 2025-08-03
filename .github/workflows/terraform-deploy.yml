@@ -28,8 +28,9 @@ jobs:
 
       - name: Export TF_VAR_google_credentials
         run: |
-          echo "TF_VAR_google_credentials=${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
-
+          echo 'TF_VAR_google_credentials<<EOF' >> $GITHUB_ENV
+          echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
       - name: Terraform Plan
         run: terraform plan -var-file="config/dev-us-central1/terraform.tfvars" -input=false -no-color
