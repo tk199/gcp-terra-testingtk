@@ -26,8 +26,8 @@ jobs:
       - name: Terraform Init
         run: terraform init -backend-config="config/dev-us-central1/backend.conf" -force-copy -lock=false
 
-      - name: Terraform Import Existing GCS Bucket
-        run: terraform import -input=false -var-file="config/dev-us-central1/terraform.tfvars" module.buckets.google_storage_bucket.state_bucket terraform-tk-terra-dev
+      # - name: Terraform Import Existing GCS Bucket
+      #   run: terraform import -input=false -var-file="config/dev-us-central1/terraform.tfvars" module.buckets.google_storage_bucket.state_bucket terraform-tk-terra-dev
 
       - name: Export TF_VAR_google_credentials
         run: |
