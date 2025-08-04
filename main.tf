@@ -1,3 +1,8 @@
+terraform {
+  backend "gcs" {}
+}
+
+
 module "compute" {
     source = "./modules/compute"
 }
