@@ -12,3 +12,10 @@ module "buckets" {
   gcp_resource_location = var.gcp_resource_location
   gcp_project_name    = var.gcp_project_name
 }
+
+
+resource "null_resource" "kickstart" {
+  provisioner "local-exec" {
+    command = "echo Just testing remote state setup"
+  }
+}
