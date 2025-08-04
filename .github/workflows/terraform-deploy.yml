@@ -38,6 +38,12 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -var-file="config/dev-us-central1/terraform.tfvars" -auto-approve
 
+      - name: Terraform Destroy Everything
+        run: terraform destroy -auto-approve
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_KEY_JSON }}
+
+
   terraform-stage:
     if: github.ref_name == 'stage'
     runs-on: ubuntu-latest
