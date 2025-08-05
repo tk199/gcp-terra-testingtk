@@ -6,4 +6,4 @@ gcp_project_number ="414315734128"
 gcp_resource_location = "us-central1"
 environment = "dev"
 use_existing_ip = true
-create_state_bucket = true
+create_state_bucket = false
