@@ -34,14 +34,17 @@ jobs:
 
 
       - name: Terraform Import Existing GCS Bucket
-        if: env.CREATE_STATE_BUCKET == 'false'
-        env:
-          CREATE_STATE_BUCKET: false
         run: |
+          echo "TF_VAR_google_credentials<<EOF" >> $GITHUB_ENV
+          echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
           terraform import -input=false \
             -var-file="config/dev-us-central1/terraform.tfvars" \
+            -var="create_state_bucket=true" \
             module.buckets.google_storage_bucket.state_bucket \
             terraform-tk-terra-dev
+
 
 
       - name: Terraform Plan
