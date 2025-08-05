@@ -21,7 +21,6 @@ variable "create_state_bucket" {
 }
 
 resource "google_storage_bucket" "state_bucket" {
-  count    = var.create_state_bucket ? 1 : 0
   name     = "terraform-tk-terra-${var.environment}"
   location = var.gcp_resource_location
 
