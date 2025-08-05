@@ -30,7 +30,12 @@ jobs:
           if: env.CREATE_STATE_BUCKET == 'false'
           env:
           CREATE_STATE_BUCKET: false
-          run: terraform import -input=false  -var-file="config/dev-us-central1/terraform.tfvars" module.buckets.google_storage_bucket.state_bucket[0] terraform-tk-terra-dev2
+          run: |
+            terraform import -input=false \
+            -var-file="config/dev-us-central1/terraform.tfvars" \
+            module.buckets.google_storage_bucket.state_bucket[0] \
+            terraform-tk-terra-dev
+
 
 
       - name: Export TF_VAR_google_credentials
