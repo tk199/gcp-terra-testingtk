@@ -26,6 +26,9 @@ jobs:
       - name: Terraform Init
         run: terraform init -backend-config="config/dev-us-central1/backend.conf" -force-copy -lock=false
 
+      - name: Export TF_VAR_google_credentials
+        run: echo "TF_VAR_google_credentials='${{ secrets.GCLOUD_KEY_JSON }}'" >> $GITHUB_ENV
+
       - name: Terraform Import Existing GCS Bucket
         if: env.CREATE_STATE_BUCKET == 'false'
         env:
