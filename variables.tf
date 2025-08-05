@@ -34,3 +34,9 @@ variable "use_existing_ip" {
   type = bool
   default = false
 }
+
+variable "create_state_bucket" {
+  type        = bool
+  description = "Whether to create the Terraform state bucket"
+  default     = false
+}
