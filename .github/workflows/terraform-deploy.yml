@@ -40,7 +40,7 @@ jobs:
         run: |
           terraform import -input=false \
             -var-file="config/dev-us-central1/terraform.tfvars" \
-            module.buckets.google_storage_bucket.state_bucket[0] \
+            module.buckets.google_storage_bucket.state_bucket \
             terraform-tk-terra-dev
 
 
