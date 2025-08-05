@@ -27,11 +27,11 @@ jobs:
         run: terraform init -backend-config="config/dev-us-central1/backend.conf" -force-copy -lock=false
 
       - name: Terraform Import Existing GCS Bucket
-          if: env.CREATE_STATE_BUCKET == 'false'
-          env:
+        if: env.CREATE_STATE_BUCKET == 'false'
+        env:
           CREATE_STATE_BUCKET: false
-          run: |
-            terraform import -input=false \
+        run: |
+          terraform import -input=false \
             -var-file="config/dev-us-central1/terraform.tfvars" \
             module.buckets.google_storage_bucket.state_bucket[0] \
             terraform-tk-terra-dev
