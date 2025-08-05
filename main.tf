@@ -16,6 +16,7 @@ module "buckets" {
   environment         = var.environment
   gcp_resource_location = var.gcp_resource_location
   gcp_project_name    = var.gcp_project_name
+  create_state_bucket   = var.create_state_bucket
 }
 
 
