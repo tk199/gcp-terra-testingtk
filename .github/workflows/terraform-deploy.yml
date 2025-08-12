@@ -20,7 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Terraform
+      - name: Setup Terraform 
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
@@ -54,11 +54,11 @@ jobs:
       - name: Terraform Init
         run: terraform init -backend-config="config/stage-us-central1/backend-stage.conf" -force-copy -lock=false
 
-       - name: Inject google_credentials safely
-         run: |
-           echo "TF_VAR_google_credentials<<EOF" >> $GITHUB_ENV
-           echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
-           echo "EOF" >> $GITHUB_ENV
+      - name: Inject google_credentials safely
+        run: |
+          echo "TF_VAR_google_credentials<<EOF" >> $GITHUB_ENV
+          echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Terraform Plan
         run: terraform plan -var-file="gcp-terra-testingtk/config/stage-us-central1/terraform-stage.tfvars"
