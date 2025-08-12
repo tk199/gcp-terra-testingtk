@@ -52,7 +52,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: terraform init -backend-config="config/stage-us-central1/backend-stage.conf" -force-copy -lock=false
+        run: terraform init -backend-config="config/stage-us-central1/backend.conf" -force-copy -lock=false
 
       - name: Inject google_credentials safely
         run: |
@@ -61,8 +61,8 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Terraform Plan
-        run: terraform plan -var-file="gcp-terra-testingtk/config/stage-us-central1/terraform-stage.tfvars"
+        run: terraform plan -var-file="gcp-terra-testingtk/config/stage-us-central1/terraform.tfvars"
 
       # - name: Terraform Apply
       #   if: github.event_name == 'push'
-      #   run: terraform apply -var-file="config/stage-us-central1/terraform-stage.tfvars" -auto-approve
+      #   run: terraform apply -var-file="config/stage-us-central1/terraform.tfvars" -auto-approve
