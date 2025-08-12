@@ -63,6 +63,6 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -var-file="gcp-terra-testingtk/config/stage-us-central1/terraform-stage.tfvars"
 
-      - name: Terraform Apply
-        if: github.event_name == 'push'
-        run: terraform apply -var-file="config/stage-us-central1/terraform-stage.tfvars" -auto-approve
+      # - name: Terraform Apply
+      #   if: github.event_name == 'push'
+      #   run: terraform apply -var-file="config/stage-us-central1/terraform-stage.tfvars" -auto-approve
