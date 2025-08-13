@@ -61,7 +61,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Terraform Plan
-        run: terraform plan -var-file="gcp-terra-testingtk/config/stage-us-central1/terraform.tfvars"
+        run: terraform plan -var-file="config/stage-us-central1/terraform.tfvars"
 
       # - name: Terraform Apply
       #   if: github.event_name == 'push'
