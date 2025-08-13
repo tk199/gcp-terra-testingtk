@@ -60,16 +60,16 @@ jobs:
           echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Terraform Import Existing GCS Bucket (Stage)
-        run: |
-          echo "TF_VAR_google_credentials<<EOF" >> $GITHUB_ENV
-          echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-          terraform import -input=false \
-            -var-file="config/stage-us-central1/terraform.tfvars" \
-            -var="create_state_bucket=true" \
-            module.buckets.google_storage_bucket.state_bucket \
-            tk-terra-stage/terraform-tk-terra-stage
+      # - name: Terraform Import Existing GCS Bucket (Stage)
+      #   run: |
+      #     echo "TF_VAR_google_credentials<<EOF" >> $GITHUB_ENV
+      #     echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
+      #     echo "EOF" >> $GITHUB_ENV
+      #     terraform import -input=false \
+      #       -var-file="config/stage-us-central1/terraform.tfvars" \
+      #       -var="create_state_bucket=true" \
+      #       module.buckets.google_storage_bucket.state_bucket \
+      #       tk-terra-stage/terraform-tk-terra-stage
 
 
       - name: Terraform Plan
