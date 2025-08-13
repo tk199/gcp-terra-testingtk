@@ -33,9 +33,9 @@ resource "google_storage_bucket" "state_bucket" {
     environment = var.environment
   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 
