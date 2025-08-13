@@ -17,7 +17,6 @@ variable "gcp_project_name" {
 variable "create_state_bucket" {
   type        = bool
   description = "Whether to create the Terraform state bucket"
-  default     = false
 }
 
 resource "google_storage_bucket" "state_bucket" {
@@ -38,4 +37,5 @@ resource "google_storage_bucket" "state_bucket" {
     prevent_destroy = true
   }
 }
+
 
