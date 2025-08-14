@@ -8,7 +8,7 @@ locals {
 
 resource "google_artifact_registry_repository" "docker_image_registry" {
     location = var.location
-    repository_id = local.docker_image_registrt_name
+    repository_id = local.docker_image_registry_name
     format = "DOCKER"
     cleanup_policies {
         action = "KEEP"
