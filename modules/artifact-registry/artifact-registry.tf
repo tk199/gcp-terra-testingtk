@@ -1,9 +1,8 @@
 variable "location" {}
-variable "product" {}
 variable "environment" {}
 
 locals {
-    docker_image_registry_name = var.environment == "dev" || var.environment == "stage" ? "testing-repo" : "${var.product}-${var.environment}-${var.location}-docker-repo"
+    docker_image_registry_name = var.environment == "dev" || var.environment == "stage" ? "testing-repo" : "${var.environment}-${var.location}-docker-repo"
 }
 
 
