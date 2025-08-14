@@ -19,6 +19,13 @@ module "buckets" {
   create_state_bucket   = var.create_state_bucket
 }
 
+module "artifact-registry" {
+    source = "./modules/artifact-registry"
+    product = var.product
+    location = var.gcp_resource_location
+    environment = var.environment
+}
+
 
 resource "null_resource" "kickstart" {
   provisioner "local-exec" {
