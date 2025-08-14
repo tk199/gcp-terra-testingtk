@@ -35,8 +35,8 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -var-file="config/dev-us-central1/terraform.tfvars" -input=false -no-color
 
-      # - name: Terraform Apply
-      #   run: terraform apply -var-file="config/dev-us-central1/terraform.tfvars" -auto-approve
+      - name: Terraform Apply
+        run: terraform apply -var-file="config/dev-us-central1/terraform.tfvars" -auto-approve
 
 
   terraform-stage:
