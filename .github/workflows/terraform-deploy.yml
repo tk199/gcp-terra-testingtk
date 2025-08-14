@@ -60,7 +60,7 @@ jobs:
           echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      # - name: Terraform Import Existing GCS Bucket (Stage)
+      # - name: Terraform Import Existing GCS Bucket (Stage-)
       #   run: |
       #     echo "TF_VAR_google_credentials<<EOF" >> $GITHUB_ENV
       #     echo "${{ secrets.GCLOUD_KEY_JSON }}" >> $GITHUB_ENV
@@ -75,6 +75,6 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -var-file="config/stage-us-central1/terraform.tfvars"
 
-      # - name: Terraform Apply
-      #   if: github.event_name == 'push'
-      #   run: terraform apply -var-file="config/stage-us-central1/terraform.tfvars" -auto-approve
+      - name: Terraform Apply
+        if: github.event_name == 'push'
+        run: terraform apply -var-file="config/stage-us-central1/terraform.tfvars" -auto-approve
