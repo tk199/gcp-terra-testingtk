@@ -19,9 +19,12 @@ module "buckets" {
   create_state_bucket   = var.create_state_bucket
 }
 
+module "artifact-registry" {
+    source = "./modules/artifact-registry"
+    location = var.gcp_resource_location
+    environment = var.environment
+}
 
-resource "null_resource" "kickstart" {
-  provisioner "local-exec" {
-    command = "echo Just testing remote state setup"
-  }
+module "bootstrap" {
+    source = "./modules/bootstrap/"
 }
