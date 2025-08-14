@@ -21,7 +21,6 @@ module "buckets" {
 
 module "artifact-registry" {
     source = "./modules/artifact-registry"
-    product = var.product
     location = var.gcp_resource_location
     environment = var.environment
 }
