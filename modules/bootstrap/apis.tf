@@ -13,7 +13,7 @@ locals {
         "iamcredentials.googleapis.com",
         "logging.googleapis.com",
         "monitoring.googleapis.com",
-        "servicenetowrking.googleapis.com",
+        "servicenetworking.googleapis.com",
         "storage-component.googleapis.com",
         "sts.googleapis.com",
         "run.googleapis.com",
