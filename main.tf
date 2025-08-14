@@ -25,9 +25,6 @@ module "artifact-registry" {
     environment = var.environment
 }
 
-
-resource "null_resource" "kickstart" {
-  provisioner "local-exec" {
-    command = "echo Just testing remote state setup"
-  }
+module "bootstrap" {
+    source = "./modules/bootstrap/"
 }
