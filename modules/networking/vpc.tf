@@ -24,14 +24,14 @@ resource "google_compute_subnetwork" "connector_subnet" {
     name = local.connector_subnet_name
     ip_cidr_range = "10.1.0.0/28"
     region = var.location
-    network = googe_compute_network.vpc.vpc_id
+    network = google_compute_network.vpc.vpc_id
     lifecycle { ignore_changes = [log_config]} 
 }
 
 resource "google_compute_fireawall" "allow_http_ingress" {
     direction = "INGRESS"
     name = local.fw_allow_http_ingress_name
-    network = googe_compute_network.vpc.id
+    network = google_compute_network.vpc.id
     priority = 1100
 
     allow {
@@ -44,7 +44,7 @@ resource "google_compute_fireawall" "allow_http_ingress" {
     }
 }
 
-resource "googe_compute_firewall" "block_all_ingress" {
+resource "google_compute_firewall" "block_all_ingress" {
     direction = "INGRESS"
     name = local.fw_block_all_ingress_name
     network = google_compute_network.vpc.id
@@ -71,7 +71,7 @@ output "connector_subnet_name" {
 }
 
 output "connector_subnet_id" {
-    value = googe_compute_subnetwork.primary_subnet.id
+    value = google_compute_subnetwork.primary_subnet.id
 }
 
 output "primary_subnet_name" {
