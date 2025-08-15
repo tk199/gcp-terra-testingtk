@@ -7,8 +7,8 @@ module "compute" {
     source = "./modules/compute"
 }
 
-module "network" {
-    source = "./modules/network"
+module "networking" {
+    source = "./modules/networking"
 }
 
 module "buckets" {
