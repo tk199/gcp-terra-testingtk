@@ -1,3 +1,5 @@
+variable "environment" {}
+variable "location" {}
 
 locals {
     vpc_name = var.environment == "dev" || var.environment == "stage" ? "test-vpc" : "${var.environment}-${var.location}-vpc"
