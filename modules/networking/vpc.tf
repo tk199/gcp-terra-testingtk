@@ -53,10 +53,6 @@ resource "google_compute_firewall" "block_all_ingress" {
     priority = 1000
     source_ranges = ["0.0.0.0/0"]
     source_tags = []
-    deny {
-        ports = []
-        protocol = "all"
-    }
 }
 
 
