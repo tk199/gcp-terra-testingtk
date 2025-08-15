@@ -1,4 +1,4 @@
-variable "environemnt" {}
+variable "environment" {}
 variable "location" {}
 
 locals {
