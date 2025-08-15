@@ -26,7 +26,7 @@ resource "google_compute_subnetwork" "connector_subnet" {
     name = local.connector_subnet_name
     ip_cidr_range = "10.1.0.0/28"
     region = var.location
-    network = google_compute_network.vpc.vpc.id
+    network = google_compute_network.vpc.id
     lifecycle { ignore_changes = [log_config]} 
 }
 
