@@ -31,20 +31,23 @@ resource "google_compute_subnetwork" "connector_subnet" {
 }
 
 resource "google_compute_firewall" "allow_http_ingress" {
-    direction = "INGRESS"
-    name = local.fw_allow_http_ingress_name
-    network = google_compute_network.vpc.id
-    priority = 1100
+  direction = "INGRESS"
+  name      = local.fw_allow_http_ingress_name
+  network   = google_compute_network.vpc.id
+  priority  = 1100
 
-    allow {
-        protocol = "tcp"
-        ports = ["443", "80"]
-    }
+  allow {
+    protocol = "tcp"
+    ports    = ["443", "80"]
+  }
 
-    log_config {
-        metadata = "INCLUDE_ALL_METADATA"
-    }
+  source_ranges = ["0.0.0.0/0"]
+
+  log_config {
+    metadata = "INCLUDE_ALL_METADATA"
+  }
 }
+
 
 resource "google_compute_firewall" "block_all_ingress" {
     direction = "INGRESS"
