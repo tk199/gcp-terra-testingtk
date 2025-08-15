@@ -6,7 +6,7 @@ locals {
     primary_subnet_name = var.environment == "dev" || var.environment == "stage" ?  "test-subnet" : "${var.environment}-${var.location}-subnet"
     connector_subnet_name = var.environment == "dev" || var.environment == "stage" ? "test-subnet2" : "${var.environment}-${var.location}-connector-subnet2"
     fw_allow_http_ingress_name = var.environment == "dev" || var.environment == "stage" ? "test-allow-http-ingress" : "${var.environment}-${var.location}-allow-http-ingress"
-    fw_block_http_ingress_name = var.environment == "dev" || var.environment == "stage" ? "test-block-http-ingress" : "${var.environment}-${var.location}-block-http-ingress"
+    fw_block_all_ingress_name = var.environment == "dev" || var.environment == "stage" ? "test-block-http-ingress" : "${var.environment}-${var.location}-block-http-ingress"
 }
 
 resource "google_compute_network" "vpc" {
@@ -18,7 +18,7 @@ resource "google_compute_subnetwork" "primary_subnet" {
     name = local.primary_subnet_name
     ip_cidr_range = "10.1.0.0/24"
     region = var.location
-    network = google_compute_network.vpc_id
+    network = google_compute_network.vpc.id
     lifecycle { ignore_changes = [log_config]}
 }
 
@@ -26,7 +26,7 @@ resource "google_compute_subnetwork" "connector_subnet" {
     name = local.connector_subnet_name
     ip_cidr_range = "10.1.0.0/28"
     region = var.location
-    network = google_compute_network.vpc.vpc_id
+    network = google_compute_network.vpc.vpc.id
     lifecycle { ignore_changes = [log_config]} 
 }
 
