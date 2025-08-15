@@ -1,3 +1,6 @@
+variable "location" {}
+variable "environment" {}
+
 locals {
     vpc_name = var.environment == "dev" || var.environment == "stage" ? "test-vpc" : "${var.environment}-${var.location}-vpc"
     primary_subnet_name = var.environment == "dev" || var.environment == "stage" ?  "test-subnet" : "${var.environment}-${var.location}-subnet"
