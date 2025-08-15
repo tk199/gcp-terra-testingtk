@@ -35,8 +35,8 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -var-file="config/dev-us-central1/terraform.tfvars" -input=false -no-color
 
-      # - name: Terraform Apply
-      #   run: terraform apply -var-file="config/dev-us-central1/terraform.tfvars" -auto-approve
+      - name: Terraform Apply
+        run: terraform apply -var-file="config/dev-us-central1/terraform.tfvars" -auto-approve
 
 
   terraform-stage:
@@ -75,6 +75,6 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -var-file="config/stage-us-central1/terraform.tfvars"
 
-      - name: Terraform Apply
-        if: github.event_name == 'push'
-        run: terraform apply -var-file="config/stage-us-central1/terraform.tfvars" -auto-approve
+      # - name: Terraform Apply
+      #   if: github.event_name == 'push'
+      #   run: terraform apply -var-file="config/stage-us-central1/terraform.tfvars" -auto-approve
