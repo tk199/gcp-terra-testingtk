@@ -28,7 +28,7 @@ resource "google_compute_subnetwork" "connector_subnet" {
     lifecycle { ignore_changes = [log_config]} 
 }
 
-resource "google_compute_fireawall" "allow_http_ingress" {
+resource "google_compute_firewall" "allow_http_ingress" {
     direction = "INGRESS"
     name = local.fw_allow_http_ingress_name
     network = google_compute_network.vpc.id
@@ -40,7 +40,7 @@ resource "google_compute_fireawall" "allow_http_ingress" {
     }
 
     log_config {
-        metadata = "INCUDE_ALL_METADATA"
+        metadata = "INCLUDE_ALL_METADATA"
     }
 }
 
