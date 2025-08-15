@@ -9,6 +9,8 @@ module "compute" {
 
 module "networking" {
     source = "./modules/networking"
+    environment = var.environment
+    location = var.gcp_resource_location
 }
 
 module "buckets" {
